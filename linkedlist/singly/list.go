@@ -29,7 +29,7 @@ func New() *LinkedList {
 }
 
 // Add a new node to the end of the list
-func (l *LinkedList) insert(v int) {
+func (l *LinkedList) insert(v interface{}) {
 	newElm := &Element{v, nil}
 	if l.head.next == nil {
 		l.head.next = newElm
@@ -41,6 +41,34 @@ func (l *LinkedList) insert(v int) {
 	}
 	curr.next = newElm
 	l.size++
+}
+
+// Verify the existence of a value in the list
+func (l *LinkedList) contains(v interface{}) bool {
+	curr := l.head.next
+	for curr != nil {
+		if curr.Value == v {
+			return true
+		}
+		curr = curr.next
+	}
+	return false
+}
+
+// Remove the first instance of the specified value
+// Returns nil if the value is not found in the list
+func (l *LinkedList) remove(v interface{}) interface{} {
+	curr, prev := l.head.next, l.head
+	for curr != nil {
+		if curr.Value == v {
+			prev.next = curr.next
+			curr.next = nil // avoid memory leaks
+			return curr.Value
+		}
+		prev = curr
+		curr = curr.next
+	}
+	return nil
 }
 
 // Iterate and print each value in the list
@@ -55,12 +83,4 @@ func (l *LinkedList) print() {
 		}
 	}
 	fmt.Println()
-}
-
-func main() {
-	list := New()
-	list.insert(1)
-	list.insert(2)
-	list.insert(3)
-	list.print()
 }
