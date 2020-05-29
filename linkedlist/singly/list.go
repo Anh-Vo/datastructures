@@ -48,10 +48,10 @@ func (l *LinkedList) print() {
 	curr := l.head.next
 	fmt.Print("head ->")
 	for curr != nil {
-		fmt.Printf(" [ %v ]", curr.Value)
+		fmt.Printf(" [ %v ] ", curr.Value)
 		curr = curr.next
 		if curr != nil {
-			fmt.Print(" ->")
+			fmt.Print("->")
 		}
 	}
 	fmt.Println()
