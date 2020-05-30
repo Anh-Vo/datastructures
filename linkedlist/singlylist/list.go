@@ -1,4 +1,4 @@
-package main
+package singly
 
 import "fmt"
 
@@ -29,7 +29,7 @@ func New() *LinkedList {
 }
 
 // Add a new node to the end of the list
-func (l *LinkedList) insert(v interface{}) {
+func (l *LinkedList) Insert(v interface{}) {
 	newElm := &Element{v, nil}
 	if l.head.next == nil {
 		l.head.next = newElm
@@ -44,7 +44,7 @@ func (l *LinkedList) insert(v interface{}) {
 }
 
 // Verify the existence of a value in the list
-func (l *LinkedList) contains(v interface{}) bool {
+func (l *LinkedList) Contains(v interface{}) bool {
 	curr := l.head.next
 	for curr != nil {
 		if curr.Value == v {
@@ -57,7 +57,7 @@ func (l *LinkedList) contains(v interface{}) bool {
 
 // Remove the first instance of the specified value
 // Returns nil if the value is not found in the list
-func (l *LinkedList) remove(v interface{}) interface{} {
+func (l *LinkedList) Remove(v interface{}) interface{} {
 	curr, prev := l.head.next, l.head
 	for curr != nil {
 		if curr.Value == v {
@@ -72,7 +72,7 @@ func (l *LinkedList) remove(v interface{}) interface{} {
 }
 
 // Iterate and print each value in the list
-func (l *LinkedList) print() {
+func (l *LinkedList) Print() {
 	curr := l.head.next
 	fmt.Print("head ->")
 	for curr != nil {
